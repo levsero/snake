@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Snake</title>
+    <script src="./jquery-2.1.1.js"></script>
+    <script src="./snake.js"></script>
+    <script src="./snakeView.js"></script>
+    <link rel="stylesheet" type="text/css" href="snake.css">
+  </head>
+  <body>
+    <container>
+
+      <header>
+        <h1>Snake</h1>
+        <p>
+          Play the classic game of snake!
+        </p>
+      </header>
+    <figure></figure>
+    <p class="score">Score: <score>0</score> High Score: <high>0</high></p>
+
+    <button>New Game</button>
+  </container>
+    <script>
+      $(function(){
+        var board = new SnakeGame.Board();
+        var $main = $("container")
+        var view = new SnakeGame.View(board, $main);
+
+        $("button").on("click", function(event) {
+          view.gameOver();
+          view = null;
+          board = null;
+          board = new SnakeGame.Board();
+          view = new SnakeGame.View(board, $main);
+        })
+      })
+    </script>
+  </body>
+</html>

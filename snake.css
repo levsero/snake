@@ -1,0 +1,80 @@
+html, ul, li, p, figure, header, h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  text-align: inherit;
+  font-family: sans-serif;
+}
+
+body {
+  text-align: center;
+  background: #eee;
+}
+
+header {
+  margin: 25px 0;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.score {
+  background: lightblue;
+  padding: 10px 0;
+  width: 300px;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+ul {
+  border-radius: 5px;
+  list-style: none;
+}
+
+.grid {
+  margin: 25px auto 0;
+  border: 2px solid black;
+  width: 300px;
+}
+
+.group:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+li {
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  float: left;
+  border: 1px solid silver;
+  background: white;
+}
+
+.message {
+  border-radius: 10px;
+  margin: auto;
+  color: white;
+  width: 300px;
+  padding: 5px;
+  background: red;
+  font-size: 24px
+}
+
+li.apple {
+  background: yellow;
+}
+
+li.snake {
+  background: purple;
+}
+
+button {
+  padding: 5px;
+  border-radius: 5px;
+}
