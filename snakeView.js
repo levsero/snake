@@ -3,7 +3,7 @@
     window.SnakeGame = {};
   }
 
-  var View = SnakeGame.View = function (game, $el) {
+  var View = SnakeGame.View = function (game, $el, speed) {
     this.game = game;
     this.$el = $el;
 
@@ -13,14 +13,16 @@
 
     this.bindEvents();
     this.setupBoard();
-    this.start();
+    // this.start();
 
     this.timer = null;
     this.over = false;
+    this.speed = speed;
   };
 
   View.prototype.start = function() {
     var view = this;
+    this.$el.find("p.message").addClass("none")
 
     var timer = setInterval( function() {
       view.game.snake.move();
@@ -32,12 +34,13 @@
 
       if (view.game.gameOver()) {
         view.updateHighScore();
-        view.$figure.find("p").text("Game Over")
+        view.$figure.find("p").text("Game Over").removeClass("none")
         clearInterval(timer);
+
       } else if (!view.over) {
         view.render();
       }
-    }, 100);
+    }, this.speed);
   };
 
   View.prototype.gameOver = function () {
@@ -98,7 +101,11 @@
       }
     }
 
-    html += "</ul><p class='message'>Let's play</p>";
+    html += '<div class="modal"><p class="message">Let\'s play</p>' +
+    '<input type="radio" name="dif" value="150">Easy' +
+    '<input type="radio" name="dif" value="100" checked="checked">Medium' +
+    '<input type="radio" name="dif" value="50">Hard</div>' +
+    '</ul>';
     this.$figure.html(html);
 
     this.score = 0;

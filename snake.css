@@ -1,4 +1,4 @@
-html, ul, li, p, figure, header, h1 {
+html, ul, li, p, figure, header, h1, button, input {
   margin: 0;
   padding: 0;
   border: 0;
@@ -22,17 +22,20 @@ h1 {
 }
 
 .score {
-  background: lightblue;
-  padding: 10px 0;
+  border-radius: 10px;
+  margin: auto;
+  color: white;
   width: 300px;
-  text-align: center;
-  margin: 0 auto;
-  border-radius: 20px;
+  padding: 5px;
+  font-size: 24px;
+  background: #2196F3;
 }
 
 ul {
   border-radius: 5px;
   list-style: none;
+  width: 305px;
+  display: block;
 }
 
 .grid {
@@ -57,13 +60,18 @@ li {
 }
 
 .message {
-  border-radius: 10px;
   margin: auto;
   color: white;
-  width: 300px;
-  padding: 5px;
-  background: red;
-  font-size: 24px
+  width: 290px;
+  padding: 10px 5px;
+  background: #4CAF50;
+  font-size: 24px;
+  position: absolute;
+  top: 200px;
+}
+
+.none {
+  display: none;
 }
 
 li.apple {
@@ -74,7 +82,23 @@ li.snake {
   background: purple;
 }
 
-button {
+.new-game {
+  border-radius: 10px;
+  margin: auto;
+  color: white;
+  width: 310px;
   padding: 5px;
-  border-radius: 5px;
+  background: #9C27B0;
+  font-size: 24px;
+  cursor: pointer;
+  display: block;
+}
+
+button:hover {
+  background: #7B1FA2;
+}
+
+input {
+  padding: 10px;
+  margin: 10px 5px 10px 15px;
 }

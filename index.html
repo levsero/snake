@@ -20,7 +20,7 @@
     <figure></figure>
     <p class="score">Score: <score>0</score> High Score: <high>0</high></p>
 
-    <button>New Game</button>
+    <button class="new-game">New Game</button>
   </container>
     <script>
       $(function(){
@@ -33,7 +33,9 @@
           view = null;
           board = null;
           board = new SnakeGame.Board();
-          view = new SnakeGame.View(board, $main);
+          dif = Number($main.find("input[type=radio]:checked").val())
+          view = new SnakeGame.View(board, $main, dif);
+          view.start();
         })
       })
     </script>
