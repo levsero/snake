@@ -13,7 +13,6 @@
 
     this.bindEvents();
     this.setupBoard();
-    // this.start();
 
     this.timer = null;
     this.over = false;
@@ -22,9 +21,32 @@
 
   View.prototype.start = function() {
     var view = this;
-    this.$el.find("p.message").addClass("none")
+    var p = this.$el.find("p.message");
+    $($.find("button")).prop("disabled", true);
+    view.render();
 
-    var timer = setInterval( function() {
+    p.addClass("transparent")
+
+    p.html(3);
+    setTimeout( function () {
+      p.html(2);
+      setTimeout( function () {
+        p.html(1);
+        setTimeout( function () {
+          p.removeClass("transparent");
+          p.addClass("none")
+          view.timers();
+        }, 1000)
+      }, 1000)
+    }, 1000)
+  };
+
+  View.prototype.timers = function () {
+    var view = this;
+    var p = this.$el.find("p.message")
+    $($.find("button")).prop("disabled", false);
+
+    var timer = setInterval( function () {
       view.game.snake.move();
       view.timer = timer;
 
@@ -34,14 +56,14 @@
 
       if (view.game.gameOver()) {
         view.updateHighScore();
-        view.$figure.find("p").text("Game Over").removeClass("none")
+        p.text("Game Over").removeClass("none")
         clearInterval(timer);
 
       } else if (!view.over) {
         view.render();
       }
     }, this.speed);
-  };
+  }
 
   View.prototype.gameOver = function () {
     clearInterval(this.timer);
