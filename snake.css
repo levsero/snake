@@ -75,12 +75,9 @@ li {
 }
 
 .transparent {
-  margin: auto;
-  color: red;
-  width: 290px;
-  padding: 10px 5px;
   background: transparent;
-  font-size: 24px;
+  color: #4CAF50;
+  font-size: 36px;
   position: absolute;
   top: 200px;
 }
