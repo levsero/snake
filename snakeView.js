@@ -21,7 +21,7 @@
 
   View.prototype.start = function() {
     var view = this;
-    var p = this.$el.find("p.message");
+    var p = this.$el.find("button.message");
     $($.find("button")).prop("disabled", true);
     view.render();
 
@@ -43,7 +43,7 @@
 
   View.prototype.timers = function () {
     var view = this;
-    var p = this.$el.find("p.message")
+    var button = this.$el.find("button.message")
     $($.find("button")).prop("disabled", false);
 
     var timer = setInterval( function () {
@@ -56,7 +56,7 @@
 
       if (view.game.gameOver()) {
         view.updateHighScore();
-        p.text("Game Over").removeClass("none")
+        button.html('Game Over <br> <p class="restart">(click to restart)<p>').removeClass("none")
         clearInterval(timer);
 
       } else if (!view.over) {
@@ -77,11 +77,14 @@
 
   var renderSnake = function (view) {
     var arr = view.game.snake.segments;
-    view.$figure.find("li").removeClass("snake");
+    view.$figure.find("li").removeClass("snake first");
     for(i = 0; i < arr.length; i++){
       var idx = (arr[i].x * SnakeGame.Board.DIM_Y) + (arr[i].y)
       var $snake = view.$figure.find("li").eq(idx);
       $snake.addClass("snake");
+      if (i == 0) {
+        $snake.addClass("first")
+      }
     }
   }
 
@@ -91,6 +94,7 @@
     for(i = 0; i < arr.length; i++){
       var idx = (arr[i].x * SnakeGame.Board.DIM_Y) + (arr[i].y)
       var $apple = view.$figure.find("li").eq(idx);
+      if (!$apple.hasClass("snake"))
       $apple.addClass("apple");
     }
   }
@@ -116,19 +120,13 @@
   }
 
   View.prototype.setupBoard = function ( ) {
-    var html = "<ul class='grid group'>"
+    var html = ""
     for (var i = 0; i < SnakeGame.Board.DIM_X; i++) {
       for (var j = 0; j < SnakeGame.Board.DIM_Y; j++) {
         html += "<li></li>"
       }
     }
-
-    html += '<div class="modal"><p class="message">Let\'s play</p>' +
-    '<input type="radio" name="dif" value="150">Easy' +
-    '<input type="radio" name="dif" value="100" checked="checked">Medium' +
-    '<input type="radio" name="dif" value="50">Hard</div>' +
-    '</ul>';
-    this.$figure.html(html);
+    this.$figure.find("ul").html(html);
 
     this.score = 0;
     this.$score.html(0);
@@ -153,5 +151,4 @@
       this.game.snake.turn("S");
     }
   };
-
 })();

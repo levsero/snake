@@ -17,10 +17,26 @@
           Play the classic game of snake!
         </p>
       </header>
-    <figure></figure>
-    <p class="score">Score: <score>0</score> High Score: <high>0</high></p>
 
-    <button class="new-game">New Game</button>
+    <figure>
+      <div class="holder">
+        <div class="modal"><button class="message">Let's play
+          <p class="restart">(click to play)<p>
+          </button></div>
+        <ul class='grid group'>
+
+        </ul>
+        <inputs>
+          <label>
+          <input type="radio" name="dif" value="150">Easy</label>
+          <label>
+          <input type="radio" name="dif" value="100" checked="checked">Medium</label>
+          <label>
+          <input type="radio" name="dif" value="50">Hard</label>
+        <inputs>
+      </div>
+    </figure>
+    <p class="score">Score: <score>0</score> High Score: <high>0</high></p>
   </container>
     <script>
       $(function(){
@@ -30,8 +46,6 @@
 
         $("button").on("click", function(event) {
           view.gameOver();
-          view = null;
-          board = null;
           board = new SnakeGame.Board();
           dif = Number($main.find("input[type=radio]:checked").val())
           view = new SnakeGame.View(board, $main, dif);
